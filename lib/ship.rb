@@ -1,7 +1,8 @@
 class Ship
 
-  def initialize 
-    
+  def initialize(name, length)
+    @name = name
+    @length = length
   end
 
 end
