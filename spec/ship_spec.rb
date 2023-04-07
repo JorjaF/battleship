@@ -9,7 +9,7 @@ RSpec.describe Ship do
   it "has attributes" do
     cruiser = Ship.new("Cruiser", 3)
     expect(cruiser.name).to eq("Cruiser")
-    # expect(cruiser.length).to eq(3)
+    expect(cruiser.length).to eq(3)
   end
 
   it "has health" do
@@ -24,9 +24,10 @@ RSpec.describe Ship do
     cruiser.hit
     expect(cruiser.health).to eq (2)
     cruiser.hit
+    expect(cruiser.health).to eq (1)
+    expect(cruiser.sunk?).to eq (false)
     cruiser.hit
     expect(cruiser.health).to eq(0)
-    expect(cruiser.sunk?)
+    expect(cruiser.sunk?).to eq (true)
   end
-
 end
