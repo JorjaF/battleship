@@ -1,9 +1,9 @@
 class Cell
-  # attr_reader :name 
-  #             :length
+  attr_reader :coordinate 
+              # :
             
-  def initialize(name, length)
-    @name = name
+  def initialize(coordinate)
+    @coordinate = coordinate
 
     
   end
