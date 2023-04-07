@@ -45,7 +45,7 @@ RSpec.describe Cell do
     expect(cell.fired_upon?).to eq(true)
   end
 
-  xit "can print to the board" do
+  it "can print to the board" do
     cell_1 = Cell.new("B4")
 
     expect(cell_1.render).to eq(".")
@@ -53,7 +53,7 @@ RSpec.describe Cell do
     expect(cell_1.render).to eq("M")
   end
 
-  xit "has an option to show ships" do
+  it "has an option to show ships" do
     cell_2 = Cell.new("C3")
     cruiser = Ship.new("Cruiser", 3)
     cell_2.place_ship(cruiser)
