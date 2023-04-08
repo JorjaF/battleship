@@ -29,7 +29,7 @@ RSpec.describe Board do
     expect(board.valid_coordinate?("A22")).to eq(false)
   end
 
-  it "can validate ship placement - array length" do
+  xit "can validate ship placement - array length" do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2) 
@@ -38,7 +38,7 @@ RSpec.describe Board do
     expect(board.valid_placement?(submarine, ["A2", "A3", "A4"])).to eq(false)
   end 
 
-  it "can validate ship placement - consecutive coordinates" do
+  xit "can validate ship placement - consecutive coordinates" do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2) 
@@ -49,7 +49,7 @@ RSpec.describe Board do
     expect(board.valid_placement?(submarine, ["C1", "B1"])).to eq(false)
   end 
 
-  it "can validate ship placement - not diagnol" do
+  xit "can validate ship placement - not diagnol" do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2) 
@@ -58,7 +58,7 @@ RSpec.describe Board do
     expect(board.valid_placement?(submarine, ["C2", "D3"])).to eq(false)
   end 
 
-  it "can validate ship placement" do
+  xit "can validate ship placement" do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2) 

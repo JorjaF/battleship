@@ -40,7 +40,9 @@ class Board
     end
   end
 
+  # def valid_placement?
 
+  # end
 
 end
 
