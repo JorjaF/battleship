@@ -40,9 +40,27 @@ class Board
     end
   end
 
-  # def valid_placement?
+  def valid_placement?(ship, coordinates)
+    if ship.name == "Cruiser"
+      if coordinates.length == 3
+        true
+      else
+        false
+      end
+    elsif ship.name == "Submarine"
+      if coordinates.length == 2
+        true
+      else
+        false
+      end
+    end
+  end
+    
 
-  # end
+    # if the ship type is a "cruiser", then the coordinate array length should equal 3
+  # else if the ship type is a "submarine", then the coordinate array length should equal 2
+
+  
 
 end
 
