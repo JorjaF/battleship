@@ -62,15 +62,16 @@ RSpec.describe Board do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2) 
-
+    
     expect(board.valid_placement?(submarine, ["A1", "A2"])).to eq(true)
     expect(board.valid_placement?(cruiser, ["B1", "C1", "D1"])).to eq(true)
   end
 
-  xit "can place a ship" do
+  it "can place a ship" do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
-
+    board.add_cells
+    
     board.place(cruiser, ["A1", "A2", "A3"])
     cell_1 = board.cells["A1"]   
     cell_2 = board.cells["A2"]
@@ -82,12 +83,13 @@ RSpec.describe Board do
     expect(cell_3.ship == cell_2.ship).to eq(true)
   end
 
-  xit "can check for overlapping ships" do
+  it "can check for overlapping ships" do
     board = Board.new
+    board.add_cells
     cruiser = Ship.new("Cruiser", 3)
     board.place(cruiser, ["A1", "A2", "A3"])
     submarine = Ship.new("Submarine", 2)
-
+    
     expect(board.valid_placement?(submarine, ["A1", "B1"])).to eq(false)
   end
 

@@ -1,5 +1,6 @@
 class Board
   attr_reader :cells
+  attr_accessor :cell
             
   def initialize
     @cells = {}
@@ -57,7 +58,7 @@ class Board
   # end
 
   def valid_placement?(ship, coordinates)
-    array_length(ship, coordinates) && consecutive_coordinates(ship, coordinates)
+    array_length(ship, coordinates) && consecutive_coordinates(ship, coordinates) && self.overlapping?(ship, coordinates) 
   end
 
   def array_length(ship, coordinates)
@@ -132,30 +133,16 @@ class Board
     end
   end
 
-
-  # consecutive coordinates
-  # we want to check if the coordinates given are consecutive 
-  # calling the array index position 0 and checking if the remaining values are consecutive
-  # how does the computer know what values are consecutive?
-  # need to check if horozontally correct (all the same letter with consecutive numbers) and separately vertically correct (all the same number with consecutive letters)
-  # horizontal: you can call 3.times(A.next) -ish
-  # vertical: you can call 3.times(1.next) -ish
-  # call map to get the numeric digits
-  # "A1".chars.last.to_i
-  # could use range based on the first number
-  # convert a range to an array using .to_a
-  # determine if the range.to_a == array given
-  # the '..' is inclusive and '...' is exclusive 
-
-  # use a sort method (probably need two methods)
-
-  # cruiser: coordinates.each_cons(3)
-  # submarine: coordinates.each_cons(2)
+  def overlapping?(ship, coordinates)
+    coordinates.all? do |coordinate|
+      @cells[coordinate].nil?
+    end
+  end
     
-
-  
-
-  
-
+  def place(ship, coordinates)
+    coordinates.each do |coordinate|
+      @cells[coordinate].place_ship(ship)
+    end
+  end
 end
 
