@@ -6,12 +6,6 @@ class Board
     @cells = {}
   end
 
-  # def add_cell(cell)
-  #   @cells = {
-  #     cell.coordinate => cell
-  #   }
-  # end
-
   def add_cells
     @cells = {
       "A1" => Cell.new("A1"),
@@ -40,22 +34,6 @@ class Board
       false
     end
   end
-
-  # def valid_placement?(ship, coordinates)
-  #   if ship.name == "Cruiser"
-  #     if coordinates.length == 3
-  #       true
-  #     else
-  #       false
-  #     end
-  #   elsif ship.name == "Submarine"
-  #     if coordinates.length == 2
-  #       true
-  #     else
-  #       false
-  #     end
-  #   end
-  # end
 
   def valid_placement?(ship, coordinates)
     array_length(ship, coordinates) && consecutive_coordinates(ship, coordinates) && self.overlapping?(ship, coordinates) 
