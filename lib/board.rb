@@ -56,53 +56,82 @@ class Board
   #   end
   # end
 
-  # def valid_placement?(ship, coordinates)
-  #   array_length(ship, coordinates) && consecutive_coordinates
-  # end
-
-  # def array_length(ship, coordinates)
-  #   if ship.name == "Cruiser"
-  #     if coordinates.length == 3
-  #       true
-  #     else
-  #       false
-  #     end
-  #   elsif ship.name == "Submarine"
-  #     if coordinates.length == 2
-  #       true
-  #     else
-  #       false
-  #     end
-  #   end
-  # end
-
-  # def consecutive_coordinates(ship, coordinates)
-  #   horizontal || vertical
-
-  # end
-
-  # def horizontal(ship, coordinates)
-  #   row = []
-  #   row << coordinates[0].chars.last.to_i
-  #   row << coordinates[0].chars.last.to_i.next
-  #   row << coordinates[0].chars.last.to_i.next.next
-  #   if row.last == coordinates.last.chars.last.to_i
-  #     true
-  #   else 
-  #     false
-  #   end
-  # end
-
   def valid_placement?(ship, coordinates)
-    column = []
-    column << coordinates[0].chars.first
-    column << coordinates[0].chars.first.next
-    if column.last == coordinates.last.chars.first
-      true
-    else 
+    array_length(ship, coordinates) && consecutive_coordinates(ship, coordinates)
+  end
+
+  def array_length(ship, coordinates)
+    if ship.name == "Cruiser"
+      if coordinates.length == 3
+        true
+      else
+        false
+      end
+    elsif ship.name == "Submarine"
+      if coordinates.length == 2
+        true
+      else
+        false
+      end
+    end
+  end
+
+  def consecutive_coordinates(ship, coordinates)
+    if coordinates[0].chars.first == coordinates[1].chars.first && coordinates[1].chars.last.to_i == (coordinates[0].chars.last.to_i + 1)
+      horizontal(ship, coordinates)
+    elsif coordinates[0].chars.last == coordinates[1].chars.last && coordinates[1].chars.first == coordinates[0].chars.first.next
+      vertical(ship, coordinates)
+    else
       false
     end
   end
+
+  def horizontal(ship, coordinates)
+    if coordinates.length == 3
+      row = []
+      row << coordinates[0].chars.last.to_i
+      row << coordinates[0].chars.last.to_i.next
+      row << coordinates[0].chars.last.to_i.next.next
+      if row.last == coordinates.last.chars.last.to_i
+        true
+      else 
+        false
+      end
+    elsif coordinates.length == 2 
+      row = []
+      row << coordinates[0].chars.last.to_i
+      row << coordinates[0].chars.last.to_i.next
+      if row.last == coordinates.last.chars.last.to_i
+        true
+      else 
+        false
+      end
+    end
+  end
+
+  def vertical(ship, coordinates)
+    if coordinates.length == 2
+      column = []
+      column << coordinates[0].chars.first
+      column << coordinates[0].chars.first.next
+      if column.last == coordinates.last.chars.first
+        true
+      else 
+        false
+      end
+    elsif coordinates.length == 3
+      column = []
+      column << coordinates[0].chars.first
+      column << coordinates[0].chars.first.next
+      column << coordinates[0].chars.first.next.next
+      if column.last == coordinates.last.chars.first
+        true
+      else 
+        false
+      end
+    end
+  end
+
 
   # consecutive coordinates
   # we want to check if the coordinates given are consecutive 
