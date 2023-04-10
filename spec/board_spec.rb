@@ -91,5 +91,26 @@ RSpec.describe Board do
     submarine = Ship.new("Submarine", 2)
     expect(board.valid_placement?(submarine, ["A1", "B1"])).to eq(false)
   end
+
+  xit "can render the board" do 
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)    
+    board.add_cells
+    board.place(cruiser, ["A1", "A2", "A3"])   
+    cell_1 = board.cells["A1"]   
+    cell_2 = board.cells["A2"]
+    cell_3 = board.cells["A3"]
+
+    board.render
+    expect(cell_1.render).to eq(".")
+
+
+# And just like with cells, we will include an optional argument to indicate whether we want to show hidden ships.
+    board.render(true)
+    expect(cell_1.render).to eq("S")
+
+  end
+
+  # As you move forward, you will need to add functionality to your game so that you can fire on Cells and damage their Ships. When you do this, you should also add new tests for your render method that it can render with Hits, Misses, and Sunken Ships. See Iteration 2 requirements for examples of what it could look like
 end
 

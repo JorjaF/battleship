@@ -1,6 +1,5 @@
 class Board
   attr_reader :cells
-  attr_accessor :cell
             
   def initialize
     @cells = {}
@@ -36,7 +35,7 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
-    array_length(ship, coordinates) && consecutive_coordinates(ship, coordinates) && self.overlapping?(ship, coordinates) 
+    array_length(ship, coordinates) && consecutive_coordinates(ship, coordinates) && overlapping?(ship, coordinates) 
   end
 
   def array_length(ship, coordinates)
@@ -123,4 +122,3 @@ class Board
     end
   end
 end
-
