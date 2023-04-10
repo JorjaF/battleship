@@ -101,13 +101,12 @@ RSpec.describe Board do
     cell_2 = board.cells["A2"]
     cell_3 = board.cells["A3"]
 
-    expect(board.render).to eq("  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n"
-    )
+    expect(board.render).to eq("  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n")
 
 
 # And just like with cells, we will include an optional argument to indicate whether we want to show hidden ships.
-    board.render(true)
-    expect(cell_1.render).to eq("S")
+    
+    expect(board.render(true)).to eq("  1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . \n")
 
   end
 

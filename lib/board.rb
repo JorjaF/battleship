@@ -124,13 +124,15 @@ class Board
 
   
   def render(show = false)
-    output = " 1 2 3 4  \n "
+    output = "  1 2 3 4 \n"
     ("A".."D").each do |row|
+      output += "#{row} "
       ("1".."4").each do |column|
         cell=@cells["#{row}#{column}"]
-        output += (cell.nil? ? "." : cell.render(show))
+        output += (cell.ship.nil? ? "." : cell.render(show))
+        output += " "
       end
-        output += "\n "
+        output += "\n"
     end
     output
     end     
