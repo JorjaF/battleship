@@ -121,4 +121,17 @@ class Board
       @cells[coordinate].place_ship(ship)
     end
   end
-end
+
+  
+  def render(show = false)
+    output = "  1 2 3 4 \n"
+    ("A".."D").each do |row|
+      ("1".."4").each do |column|
+        cell=@cells["#{row}#{column}"]
+        output += (cell.nil? ? "." : cell.render(show))
+      end
+      output += "\n"
+    end
+    output
+    end     
+ end

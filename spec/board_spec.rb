@@ -92,7 +92,7 @@ RSpec.describe Board do
     expect(board.valid_placement?(submarine, ["A1", "B1"])).to eq(false)
   end
 
-  xit "can render the board" do 
+  it "can render the board" do 
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)    
     board.add_cells
@@ -101,8 +101,8 @@ RSpec.describe Board do
     cell_2 = board.cells["A2"]
     cell_3 = board.cells["A3"]
 
-    board.render
-    expect(cell_1.render).to eq(".")
+    expect(board.render).to eq("  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n"
+    )
 
 
 # And just like with cells, we will include an optional argument to indicate whether we want to show hidden ships.
