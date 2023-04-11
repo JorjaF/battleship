@@ -24,15 +24,15 @@ RSpec.describe Game do
     game = Game.new
     computer_board = Board.new
     computer_board.add_cells
-    cruiser = Ship.new("Cruiser", 3)
-    submarine = Ship.new("Submarine", 2) 
+    comp_cruiser = Ship.new("Cruiser", 3)
+    comp_submarine = Ship.new("Submarine", 2) 
 
-    computer_board.random_placement(cruiser)
-    expect(computer_board.valid_placement?(cruiser, ["A1", "A2", "A3"])).to eq(true)
+    computer_board.random_placement(comp_cruiser)
+    expect(computer_board.valid_placement?(comp_cruiser, ["A1", "A2", "A3"])).to eq(true)
     # need to test if the placement is valid but unsure how to do so without knowing what coordinates to pass in
 
-    computer_board.random_placement(submarine)
-    expect(computer_board.valid_placement?(submarine, ["C2", "D2"])).to eq(true)
+    computer_board.random_placement(comp_submarine)
+    expect(computer_board.valid_placement?(comp_submarine, ["C2", "D2"])).to eq(true)
     # need to test if the placement is valid but unsure how to do so without knowing what coordinates to pass in
 
 
@@ -83,6 +83,22 @@ RSpec.describe Game do
   xit "takes turns" do
     game = Game.new
 
+    player_board = Board.new
+    player_board.add_cells
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    player_board.place(cruiser, ["A1", "A2", "A3"])
+    player_board.place(submarine, ["C4", "D4"])
+
+    computer_board = Board.new
+    computer_board.add_cells
+    comp_cruiser = Ship.new("Cruiser", 3)
+    comp_submarine = Ship.new("Submarine", 2) 
+    computer_board.random_placement(comp_cruiser)
+    computer_board.random_placement(comp_submarine)
+
+    expect(game.take_turn("B3")).to be_a String
+
 # # The Turn
 
 # During the main game, players take turns firing at one another by selecting positions on the grid to attack.
@@ -98,14 +114,25 @@ RSpec.describe Game do
 
   xit "displays the boards" do
     game = Game.new
-    computer_board = Board.new
+
     player_board = Board.new
-    computer_board.add_cells
     player_board.add_cells
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    player_board.place(cruiser, ["A1", "A2", "A3"])
+    player_board.place(submarine, ["C4", "D4"])
+
+    computer_board = Board.new
+    computer_board.add_cells
+    comp_cruiser = Ship.new("Cruiser", 3)
+    comp_submarine = Ship.new("Submarine", 2) 
+    computer_board.random_placement(comp_cruiser)
+    computer_board.random_placement(comp_submarine)
+
     computer_board.render
     player_board.render(true)
 
-
+    expect(game.display_boards).to eq()
 
 # # Displaying the Boards
 # At the start of the turn, the user is shown both boards. The user should see their ships but not the computer’s ships
@@ -115,6 +142,23 @@ RSpec.describe Game do
 
   xit "allows the player to take a shot" do 
     game = Game.new
+
+    player_board = Board.new
+    player_board.add_cells
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    player_board.place(cruiser, ["A1", "A2", "A3"])
+    player_board.place(submarine, ["C4", "D4"])
+
+    computer_board = Board.new
+    computer_board.add_cells
+    comp_cruiser = Ship.new("Cruiser", 3)
+    comp_submarine = Ship.new("Submarine", 2) 
+    computer_board.random_placement(comp_cruiser)
+    computer_board.random_placement(comp_submarine)
+
+    expect(game.player_shot("B3")).to be_a String
+    # return value = "Your shot on B3 was a miss/hit."
 
 # # Player Shot
 # The player should be asked for a coordinate to fire on. If they enter an invalid coordinate, they should be prompted until they enter a valid one
@@ -126,6 +170,23 @@ RSpec.describe Game do
   xit "randomly chooses a space for the computer shot" do 
     game = Game.new
 
+    player_board = Board.new
+    player_board.add_cells
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    player_board.place(cruiser, ["A1", "A2", "A3"])
+    player_board.place(submarine, ["C4", "D4"])
+
+    computer_board = Board.new
+    computer_board.add_cells
+    comp_cruiser = Ship.new("Cruiser", 3)
+    comp_submarine = Ship.new("Submarine", 2) 
+    computer_board.random_placement(comp_cruiser)
+    computer_board.random_placement(comp_submarine)
+
+    expect(game.computer_shot).to be_a String
+    # return value = "My shot on <coordinate> was a hit/miss."
+
     # # Computer Shot
 # The computer should choose a random space on the board. The computer should not fire on a space that has already been fired on.
 
@@ -135,6 +196,22 @@ RSpec.describe Game do
 
   xit "displays the results of the shots" do 
     game = Game.new
+
+    player_board = Board.new
+    player_board.add_cells
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    player_board.place(cruiser, ["A1", "A2", "A3"])
+    player_board.place(submarine, ["C4", "D4"])
+
+    computer_board = Board.new
+    computer_board.add_cells
+    comp_cruiser = Ship.new("Cruiser", 3)
+    comp_submarine = Ship.new("Submarine", 2) 
+    computer_board.random_placement(comp_cruiser)
+    computer_board.random_placement(comp_submarine)
+
+    expect(game.shot_results).to be_a String
 
 # # Results
 # The results of the shots should be displayed
@@ -152,6 +229,22 @@ RSpec.describe Game do
   xit "can determine if coordinates have already been fired upon" do 
     game = Game.new
 
+    player_board = Board.new
+    player_board.add_cells
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    player_board.place(cruiser, ["A1", "A2", "A3"])
+    player_board.place(submarine, ["C4", "D4"])
+
+    computer_board = Board.new
+    computer_board.add_cells
+    comp_cruiser = Ship.new("Cruiser", 3)
+    comp_submarine = Ship.new("Submarine", 2) 
+    computer_board.random_placement(comp_cruiser)
+    computer_board.random_placement(comp_submarine)
+
+    expect(game.valid_turn("B3")).to eq(true)
+
 # # Coordinates that have already been fired upon
 # It is possible that the user enters a coordinate they have already fired upon. You need to add something that informs the user that this is the case. You may choose to either prompt them again for a coordinate they haven’t fired on, or let them choose it again and inform them in the results phase that they selected this coordinate again.
 
@@ -160,6 +253,20 @@ RSpec.describe Game do
 
   xit "can end the game" do 
     game = Game.new
+    
+    player_board = Board.new
+    player_board.add_cells
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    player_board.place(cruiser, ["A1", "A2", "A3"])
+    player_board.place(submarine, ["C4", "D4"])
+
+    computer_board = Board.new
+    computer_board.add_cells
+    comp_cruiser = Ship.new("Cruiser", 3)
+    comp_submarine = Ship.new("Submarine", 2) 
+    computer_board.random_placement(comp_cruiser)
+    computer_board.random_placement(comp_submarine)
 
 # # End Game
 # The game is over when either the computer or the user sinks all of the enemy ships. When this happens, the user should see a message stating who won:
