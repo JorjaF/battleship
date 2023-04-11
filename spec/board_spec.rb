@@ -35,7 +35,9 @@ RSpec.describe Board do
     submarine = Ship.new("Submarine", 2) 
 
     expect(board.valid_placement?(cruiser, ["A1", "A2"])).to eq(false)
-    expect(board.valid_placement?(submarine, ["A2", "A3", "A4"])).to eq(false)
+    expect(board.valid_placement?(submarine, ["A2", "A3", "A4"])).to eq(false)  
+    expect(board.array_length(submarine, ["B2", "B3"])).to eq(true)  
+    expect(board.array_length(cruiser, ["C1", "C2", "C3"])).to eq(true)
   end 
 
   it "can validate ship placement - consecutive coordinates" do
@@ -47,6 +49,8 @@ RSpec.describe Board do
     expect(board.valid_placement?(submarine, ["A1", "C1"])).to eq(false)
     expect(board.valid_placement?(cruiser, ["A3", "A2", "A1"])).to eq(false)
     expect(board.valid_placement?(submarine, ["C1", "B1"])).to eq(false)
+    expect(board.consecutive_coordinates(cruiser, ["B1", "B2", "B3"])).to eq(true)
+    expect(board.consecutive_coordinates(submarine, ["B1", "C1"])).to eq(true)
   end 
 
   it "can validate ship placement - not diagnol" do
@@ -56,6 +60,10 @@ RSpec.describe Board do
 
     expect(board.valid_placement?(cruiser, ["A1", "B2", "C3"])).to eq(false)
     expect(board.valid_placement?(submarine, ["C2", "D3"])).to eq(false)
+    expect(board.horizontal(cruiser, ["D1", "D2", "D3"])).to eq(true)
+    expect(board.horizontal(submarine, ["C2", "C3"])).to eq(true)
+    expect(board.vertical(cruiser, ["A1", "B1", "C1"])).to eq(true)
+    expect(board.vertical(submarine, ["C2", "D2"])).to eq(true)
   end 
 
   it "can validate ship placement" do
@@ -90,9 +98,10 @@ RSpec.describe Board do
     board.place(cruiser, ["A1", "A2", "A3"])
     submarine = Ship.new("Submarine", 2)
     expect(board.valid_placement?(submarine, ["A1", "B1"])).to eq(false)
+    expect(board.not_overlapping?(submarine, ["A1", "B1"])).to eq(false)
   end
 
-  xit "can render the board" do 
+  it "can render the board" do 
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)    
     board.add_cells
@@ -101,16 +110,14 @@ RSpec.describe Board do
     cell_2 = board.cells["A2"]
     cell_3 = board.cells["A3"]
 
-    board.render
-    expect(cell_1.render).to eq(".")
+    expect(board.render).to eq("  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n")
 
 
 # And just like with cells, we will include an optional argument to indicate whether we want to show hidden ships.
-    board.render(true)
-    expect(cell_1.render).to eq("S")
+    
+    expect(board.render(true)).to eq("  1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . \n")
 
   end
 
   # As you move forward, you will need to add functionality to your game so that you can fire on Cells and damage their Ships. When you do this, you should also add new tests for your render method that it can render with Hits, Misses, and Sunken Ships. See Iteration 2 requirements for examples of what it could look like
 end
-

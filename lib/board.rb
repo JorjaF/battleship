@@ -35,7 +35,7 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
-    array_length(ship, coordinates) && consecutive_coordinates(ship, coordinates) && overlapping?(ship, coordinates) 
+    array_length(ship, coordinates) && consecutive_coordinates(ship, coordinates) && not_overlapping?(ship, coordinates) 
   end
 
   def array_length(ship, coordinates)
@@ -110,7 +110,7 @@ class Board
     end
   end
 
-  def overlapping?(ship, coordinates)
+  def not_overlapping?(ship, coordinates)
     coordinates.all? do |coordinate|
       @cells[coordinate].nil?
     end
@@ -121,4 +121,18 @@ class Board
       @cells[coordinate].place_ship(ship)
     end
   end
-end
+  
+  def render(show = false)
+    output = "  1 2 3 4 \n"
+    ("A".."D").each do |row|
+      output += "#{row} "
+      ("1".."4").each do |column|
+        cell=@cells["#{row}#{column}"]
+        output += (cell.ship.nil? ? "." : cell.render(show))
+        output += " "
+      end
+        output += "\n"
+    end
+    output
+    end     
+ end
