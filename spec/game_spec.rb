@@ -5,35 +5,41 @@ require './lib/board'
 require './lib/game'
 
 RSpec.describe Game do
+  # before each do here
   it "exists" do
     game = Game.new
     expect(game).to be_a(Game)
   end
 
-  xit "has a main menu" do
+  it "has a main menu" do
     game = Game.new
     
-    expect(game.main_menu).to eq("Welcome to BATTLESHIP \n Enter p to play. Enter q to quit.")
+    expect(game.main_menu).to eq("Invalid input. \n Enter p to play. Enter q to quit.")
 
     # # When the user starts the game, they should see a welcome message that asks them if they want to play or quit. Whenever a game ends, they should return to this message so they can start a new game, or quit.
 # # Welcome to BATTLESHIP
 # # Enter p to play. Enter q to quit.
   end
 
-  xit "randomly places the computer ships" do 
+  it "randomly places the computer ships" do 
     game = Game.new
-    computer_board = Board.new
-    computer_board.add_cells
+    game.computer_board.add_cells
     comp_cruiser = Ship.new("Cruiser", 3)
     comp_submarine = Ship.new("Submarine", 2) 
 
-    computer_board.random_placement(comp_cruiser)
-    expect(computer_board.valid_placement?(comp_cruiser, ["A1", "A2", "A3"])).to eq(true)
-    # need to test if the placement is valid but unsure how to do so without knowing what coordinates to pass in
+    # game.computer_board.place(comp_cruiser, [])
 
-    computer_board.random_placement(comp_submarine)
-    expect(computer_board.valid_placement?(comp_submarine, ["C2", "D2"])).to eq(true)
-    # need to test if the placement is valid but unsure how to do so without knowing what coordinates to pass in
+    game.random_placement
+    # expect(computer_board.valid_placement?(comp_cruiser, ["A1", "A2", "A3"])).to eq(true)
+    # expect(board.valid_coordinate?("A1")).to eq(true)
+
+    # # need to test if the placement is valid but unsure how to do so without knowing what coordinates to pass in
+
+    # computer_board.random_placement(comp_submarine)
+    # expect(computer_board.valid_placement?(comp_submarine, ["C2", "D2"])).to eq(true)
+    # expect(board.valid_coordinate?("C2")).to eq(true)
+
+    # # need to test if the placement is valid but unsure how to do so without knowing what coordinates to pass in; could use an integration test but the method has already been tested ; integration test would use the return value 
 
 
 # # Computer Ship Placement

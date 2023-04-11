@@ -4,7 +4,7 @@ class Board
   def initialize
     @cells = {}
   end
-
+# can add the cells to the initializer
   def add_cells
     @cells = {
       "A1" => Cell.new("A1"),
@@ -27,15 +27,17 @@ class Board
   end
 
   def valid_coordinate?(coordinate)
-    if @cells.include?(coordinate)
-      true
-    else 
-      false
-    end
+    @cells.include?(coordinate)
+    #   true
+    # else 
+    #   false
+    # end
   end
 
   def valid_placement?(ship, coordinates)
-    array_length(ship, coordinates) && consecutive_coordinates(ship, coordinates) && overlapping?(ship, coordinates) 
+    array_length(ship, coordinates) && 
+    consecutive_coordinates(ship, coordinates) && 
+    overlapping?(ship, coordinates) 
   end
 
   def array_length(ship, coordinates)
@@ -115,10 +117,11 @@ class Board
       @cells[coordinate].nil?
     end
   end
-    
+
   def place(ship, coordinates)
     coordinates.each do |coordinate|
       @cells[coordinate].place_ship(ship)
     end
   end
+
 end

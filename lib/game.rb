@@ -1,11 +1,66 @@
 class Game
+  attr_reader :computer_board,
+              :player_board
             
   def initialize
+    @computer_board = Board.new
+    @player_board = Board.new
+    # @computer_ships = []
+    # @player_ships = []
   end
+
+  def main_menu(user_input)
+    puts "Welcome to BATTLESHIP \n Enter p to play. Enter q to quit."
+    # ^different method to start the game
+    # user_input = gets.chomp
+    if user_input == "p"
+      puts "Game on, let's go!"
+    elsif user_input == "q"
+      puts "Chicken!"
+    else 
+      puts "Invalid input. \n Enter p to play. Enter q to quit."
+    end
+    # need to change return value 
+  end
+
+  def random_placement
+    cell_names = computer_board.cells.keys
+    cell_names.rand
+
+    # brute force solution - 
+    # chooses first randomly then finds a match
+    # the runner lives at the root 
+
+# ensure valid placement
+
+    # take the hash of cells and return an array of keys only
+    # return coordinates selected 
+  end
+
+  # def random_placement(ship)
+  #   placeShip: (size) ->
+  #   spans = @freeSquares().filter (span) ->
+  #     span.length >= size
+  #   span = spans.sample()
+  #   throw "The ocean's too crowded" unless span?
+  #   # offset = Math.random() * (span.length - size) | 0
+  #   squares = span.slice(offset, offset+size)
+  #   square.ship = size for square in squares
+  #   @ships.push squares
+
+  # shipCoordinates: ->
+  #   @ships.map (squares) ->
+  #     squares.map (square) ->
+  #       [square.x, square.y]
+  # require 'pry'; binding.pry
+  #   computer_board.cells.keys
+  #   keys[rand(keys.size)]
+
+  # end
   
 end
 
-
+# gets.chomp for user input
 
 
 # # Functionality Checklist
