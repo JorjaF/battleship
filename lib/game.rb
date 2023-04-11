@@ -11,8 +11,11 @@ class Game
 
   def main_menu(user_input)
     puts "Welcome to BATTLESHIP \n Enter p to play. Enter q to quit."
-    # ^different method to start the game
-    # user_input = gets.chomp
+    welcome_screen(user_input)
+    "Thank you for playing!" 
+  end 
+
+  def welcome_screen(user_input)
     if user_input == "p"
       puts "Game on, let's go!"
     elsif user_input == "q"
@@ -20,7 +23,6 @@ class Game
     else 
       puts "Invalid input. \n Enter p to play. Enter q to quit."
     end
-    # need to change return value 
   end
 
   def random_placement

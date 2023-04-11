@@ -12,7 +12,7 @@ RSpec.describe Board do
   it "contains cells" do
     board = Board.new
 
-    # expect(board.cells).to eq({})
+    expect(board.cells).to eq({})
     board.add_cells
     expect(board.cells).to be_a Hash
     expect(board.cells.count).to eq(16)
