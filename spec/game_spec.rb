@@ -12,6 +12,8 @@ RSpec.describe Game do
 
   xit "has a main menu" do
     game = Game.new
+    
+    expect(game.main_menu).to eq("Welcome to BATTLESHIP \n Enter p to play. Enter q to quit.")
 
     # # When the user starts the game, they should see a welcome message that asks them if they want to play or quit. Whenever a game ends, they should return to this message so they can start a new game, or quit.
 # # Welcome to BATTLESHIP
@@ -20,14 +22,49 @@ RSpec.describe Game do
 
   xit "randomly places the computer ships" do 
     game = Game.new
+    computer_board = Board.new
+    computer_board.add_cells
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2) 
+
+    computer_board.random_placement(cruiser)
+    expect(computer_board.valid_placement?(cruiser, ["A1", "A2", "A3"])).to eq(true)
+    # need to test if the placement is valid but unsure how to do so without knowing what coordinates to pass in
+
+    computer_board.random_placement(submarine)
+    expect(computer_board.valid_placement?(submarine, ["C2", "D2"])).to eq(true)
+    # need to test if the placement is valid but unsure how to do so without knowing what coordinates to pass in
+
 
 # # Computer Ship Placement
 # The computer player should place their ships. The baseline computer should simply use random placements but still adhere to the valid placement rules from iteration 2.
-
   end
 
   xit "allows the player to place ships" do 
     game = Game.new
+    player_board = Board.new
+    player_board.add_cells
+    player_board.render
+    cruiser = Ship.new("Cruiser", 3)
+    player_board.place(cruiser, ["A1", "A2", "A3"])
+    player_board.render(true)
+    cell_1 = board.cells["A1"]   
+    cell_2 = board.cells["A2"]
+    cell_3 = board.cells["A3"]  
+
+    expect(cell_1.empty?).to eq(false)
+    expect(cell_3.ship == cell_2.ship).to eq(true)
+    expect(board.valid_placement?(cruiser, ["A1", "A2", "A3"])).to eq(true)
+
+    submarine = Ship.new("Submarine", 2)
+    player_board.place(submarine, ["C4", "D4"])
+    player_board.render(true)
+    cell_12 = board.cells["C4"]  
+    cell_16 = board.cells["D4"]  
+
+    expect(cell_12.empty?).to eq(false)
+    expect(cell_12.ship == cell_16.ship).to eq(true)
+    expect(board.valid_placement?(cruiser, ["A1", "A2", "A3"])).to eq(true)
 
     # # Player Ship Placement
 # Next, the user places their ships. They should receive a short explanation of how to place along with a visual representation of their board (which should be empty). SHOW EMPTY BOARD
@@ -61,6 +98,14 @@ RSpec.describe Game do
 
   xit "displays the boards" do
     game = Game.new
+    computer_board = Board.new
+    player_board = Board.new
+    computer_board.add_cells
+    player_board.add_cells
+    computer_board.render
+    player_board.render(true)
+
+
 
 # # Displaying the Boards
 # At the start of the turn, the user is shown both boards. The user should see their ships but not the computer’s ships
