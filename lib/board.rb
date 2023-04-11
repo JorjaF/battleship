@@ -134,5 +134,5 @@ class Board
         output += "\n"
     end
     output
-    end     
- end
+  end     
+end

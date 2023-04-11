@@ -111,13 +111,7 @@ RSpec.describe Board do
     cell_3 = board.cells["A3"]
 
     expect(board.render).to eq("  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n")
-
-
-# And just like with cells, we will include an optional argument to indicate whether we want to show hidden ships.
-    
     expect(board.render(true)).to eq("  1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . \n")
-
   end
-
-  # As you move forward, you will need to add functionality to your game so that you can fire on Cells and damage their Ships. When you do this, you should also add new tests for your render method that it can render with Hits, Misses, and Sunken Ships. See Iteration 2 requirements for examples of what it could look like
 end
+  # As you move forward, you will need to add functionality to your game so that you can fire on Cells and damage their Ships. When you do this, you should also add new tests for your render method that it can render with Hits, Misses, and Sunken Ships. See Iteration 2 requirements for examples of what it could look like
