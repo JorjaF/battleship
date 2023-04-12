@@ -47,13 +47,14 @@ class Game
   # the runner lives at the root 
 
 
-  def random_placement(comp_submarine)
+  def random_placement(ship)
     cell_names = computer_board.cells.keys
     coordinates = [cell_names.sample(2)]
-    until computer_board.valid_placement?(comp_submarine, coordinates) == false
+    until computer_board.valid_placement?(ship, coordinates) == false
       coordinates = computer_board.cells.keys.sample(2)
     end
-    # computer_board.place(comp_submarine, coordinates)
+    # computer_board.place(ship, coordinates)
+    coordinates
   end
 # LG note: use 'control + c' to exit a loop (if you change false to true in line 53 you will get stuck in a loop)
 
