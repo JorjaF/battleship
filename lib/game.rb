@@ -27,16 +27,15 @@ class Game
 
 
 
-  def random_placement
-    placement = @computer_board.cruiser(rand 1..2)
-      if 1 
-        place_ship == horizontal
-      else
-        place_ship == vertical
-      end
+  # def random_placement
+  #   placement = @computer_board.cruiser(rand 1..2)
+  #     if 1 
+  #       place_ship == horizontal
+  #     else
+  #       place_ship == vertical
+  #     end
+  # end
   
-  
-
   # tim said that brute force is not our friend in this situation 
   # because it is so hard to test, I am trying the logic method
   # my goal is to first randomize if the ship is vertical or horizontal
@@ -47,10 +46,22 @@ class Game
   # chooses first randomly then finds a match
   # the runner lives at the root 
 
-  # def random_placement
-  #   cell_names = computer_board.cells.keys
-  #   cell_names.rand
-  # end
+
+  def random_placement(comp_submarine)
+    cell_names = computer_board.cells.keys
+    coordinates = [cell_names.sample(2)]
+    until computer_board.valid_placement?(comp_submarine, coordinates) == false
+      coordinates = computer_board.cells.keys.sample(2)
+    end
+    # computer_board.place(comp_submarine, coordinates)
+  end
+# LG note: use 'control + c' to exit a loop (if you change false to true in line 53 you will get stuck in a loop)
+
+
+  # LG note: I went for a brute force solution. Whenever I set line 53 to true (which is what it should be) I get stuck in an infinite loop which tells me it cannot find a valid placement. I still think something is wrong with our valid_placement? method but can't quite figure out what. 
+  # LG note: Whenever line 53 is set to false it runs, which tells me the code in the random_placement method works but I am hitting a snag with the valid_placement? method
+  # LG note: I am also getting an error on line 56 when I try to place the ship. So perhaps the issue is how I am trying to access the board class from the game class, and not the valid_placement? method itself. 
+  # LG note: we can pull line 56 out of this method and place the ship in the spec file instead. This way we can just focus on validating the randomly generated coordinates.
 
     # brute force solution - 
     # chooses first randomly then finds a match

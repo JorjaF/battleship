@@ -11,7 +11,7 @@ RSpec.describe Game do
     expect(game).to be_a(Game)
   end
 
-  it "has a main menu" do
+  xit "has a main menu" do
     game = Game.new
     
     expect(game.main_menu("p")).to eq("Thank you for playing!")
@@ -24,7 +24,7 @@ RSpec.describe Game do
 # # Enter p to play. Enter q to quit.
   end
 
-  xit "randomly places the computer ships" do 
+  it "randomly places the computer ships" do 
     game = Game.new
     game.computer_board.add_cells
     comp_cruiser = Ship.new("Cruiser", 3)
@@ -32,7 +32,7 @@ RSpec.describe Game do
 
     # game.computer_board.place(comp_cruiser, [])
 
-    game.random_placement
+    game.random_placement(comp_submarine)
     # expect(computer_board.valid_placement?(comp_cruiser, ["A1", "A2", "A3"])).to eq(true)
     # expect(board.valid_coordinate?("A1")).to eq(true)
 

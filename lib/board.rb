@@ -50,7 +50,7 @@ class Board
   def valid_placement?(ship, coordinates)
     array_length(ship, coordinates) && 
     consecutive_coordinates(ship, coordinates) && 
-    overlapping?(ship, coordinates) 
+    not_overlapping?(ship, coordinates) 
   end
 
   def array_length(ship, coordinates)
