@@ -47,42 +47,34 @@ class Game
 
   # pseudocode: for this method, we were able to pull the cells names out of the @cells hash and put them into an array. We then took a random "sample" of two coordinates and tested if they were a valid placement. If they are a valid pair, we would place them on the board using the "place" method from the board class. If they were not a valid pair, we would call the random placement method again until a valid placement was found. Alternatively, we also tried to use the "until" loop to find a valid pair but got stuck in an infinite loop every time we ran it this way. After finding a valid pair of coordinates and placing them on the board, the method would return the new coordinates so we could use them in the spec file to test this method. We started trying to get this method to run using the submarine (two coordinates) and then if we had gotten it to run correctly, would have updated the method to run for the cruiser (3 coordinates) as well. We could have done this a few ways: a) by using an if/then conditional statement for cruiser vs submarine -or- b) by creating two separate methods (such as "random_placement_sub" and "random_placement_cruiser"). With either approach, for the cruiser method we would have changed "sample(2)" to "sample(3)".
 
-  def choose_location
-    puts "I have placed my ships. It is time for you to place your ships. First you will choose a location to place your cruiser. Your cruiser may be placed vertically or horizontally in three (3) consecutive spaces. You may not place your ship diagonally. Please select the three (3) coordinates for your cruiser now."
-    player_board.render
-    user_input_cruiser
-  end
+  # def choose_location
+  #   puts "I have placed my ships. It is time for you to place your ships. First you will choose a location to place your cruiser. Your cruiser may be placed vertically or horizontally in three (3) consecutive spaces. You may not place your ship diagonally. Please select the three (3) coordinates for your cruiser now."
+  #   player_board.render
+  #   user_input_cruiser
+  # end
 
-  def user_input_cruiser (helper method for choose_location_cruiser)
-    if <the user enters three coordinates>.valid_placement?
-      user_input_submarine
-    else
+  # def user_input_cruiser (helper method for choose_location_cruiser)
+  #   if <the user enters three coordinates>.valid_placement?
+  #     user_input_submarine
+  #   else
+  #     puts "Those are invalid coordinates. Please try again"
+  #     user_input_cruiser
+  #   end
+  # end
 
-    end
-  end
+  # def user_input_submarine (helper method)
+  #   player_board.render(true)
+  #   puts "Next you will choose a location to place your submarine. Your submarine may be placed vertically or horizontally in two (2) consecutive spaces. You may not place your ship diagonally. Please select the two (2) coordinates for your submarine now." 
+  #   if <the user enters two coordinates>.valid_placement?
+  #   else
+  #     puts "Those are invalid coordinates. Please try again"
+  #     user_input_cruiser
+  #   end
+  # end
 
-  def user_input_submarine
-    player_board.render(true)
-    puts "Next you will choose a location to place your submarine. Your submarine may be placed vertically or horizontally in two (2) consecutive spaces. You may not place your ship diagonally. Please select the two (2) coordinates for your submarine now." 
+  # pseudocode: for this method, the player is given instructions on how to place their ship and is shown an empty board. They are prompted to choose three coordinates for their cruiser. We will run the valid.placement? method to ensure the coordinates chosen are valid. If the coordinates are valid, the user_input_submarine method is called. If the coordinats are not valid the player is prompted to try again. Once the cruiser is succesfully placed, the process is repeated for the player to choose two coordinates for the submarine.
 
-  end
-  
-
-# When the user enters a valid sequence of spaces, the ship should be placed on the board, the new board with the ship should be shown to the user, and then the user should be asked to place the other ship. SHOW BOARD WITH FIRST SHIP PLACED; THEN SHOW BOARD WITH BOTH SHIPS PLACED
-
-# If the user enters an invalid sequence, they should be prompted again:
-# Enter the squares for the Submarine (2 spaces):
-# > C1 C3
-# Those are invalid coordinates. Please try again:
-# > A1 B1
-# Those are invalid coordinates. Please try again:
-# > C1 D1
-
-  
-  
-  
-  
-end
+end #(final)
 
 # gets.chomp for user input
 

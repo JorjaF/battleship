@@ -5,7 +5,7 @@ require './lib/board'
 require './lib/game'
 
 RSpec.describe Game do
-  # before each do here
+  # before each do here: instantiate a new game and add cells to the player and computer boards; if there was time to refactor we would also consider adding the ships to the Game class initializer or include them here
   it "exists" do
     game = Game.new
     expect(game).to be_a(Game)
@@ -50,25 +50,25 @@ RSpec.describe Game do
     player_board.render(true)
     # call render(true) to show the player the board with both ships set
     expect(board.valid_placement?(cruiser, [<chosen_location_coordinate_1>, <chosen_location_coordinate_2>, <chosen_location_coordinate_3>])).to eq(true)
-    expect(board.valid_placement?(submarine, [<chosen_location_coordinate_1>, <chosen_location_coordinate_2>])).to eq(true)
+    expect(board.valid_placement?(submarine, [<chosen_location_coordinate_4>, <chosen_location_coordinate_5>])).to eq(true)
     expect(<chosen_location_coordinate_1>.empty?).to eq(false)
     expect(<chosen_location_coordinate_2>.ship == <chosen_location_coordinate_3>.ship).to eq(true)
+    expect(board.not_overlapping?(submarine, [<chosen_location_coordinate_4>, <chosen_location_coordinate_5>])).to eq(true)
   end
 
   xit "takes turns" do
     game = Game.new
-
-    player_board = Board.new
-    player_board.add_cells
-    cruiser = Ship.new("Cruiser", 3)
-    submarine = Ship.new("Submarine", 2)
-    player_board.place(cruiser, ["A1", "A2", "A3"])
-    player_board.place(submarine, ["C4", "D4"])
-
-    computer_board = Board.new
-    computer_board.add_cells
+    game.computer_board.add_cells
+    game.player_board.add_cells
     comp_cruiser = Ship.new("Cruiser", 3)
     comp_submarine = Ship.new("Submarine", 2) 
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    game.random_placement(comp_submarine)
+    game.choose_location
+
+
+    computer_board = Board.new
     computer_board.random_placement(comp_cruiser)
     computer_board.random_placement(comp_submarine)
 
