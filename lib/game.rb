@@ -1,12 +1,14 @@
 class Game
   attr_reader :computer_board,
               :player_board
+  
+  attr_accessor :place
             
   def initialize
     @computer_board = Board.new
     @player_board = Board.new
-    # @computer_ships = []
-    # @player_ships = []
+    @computer_ships = []
+    @player_ships = []
   end
 
   def main_menu(user_input)
@@ -26,8 +28,20 @@ class Game
   end
 
   def random_placement
-    cell_names = computer_board.cells.keys
-    cell_names.rand
+      placement = @computer_board.cruiser(rand 1..2)
+        if 1 
+          place_ship == horizontal
+        else
+          place_ship == vertical
+        end
+    
+    
+
+    # tim said that brute force is not our friend in this situation 
+    # because it is so hard to test, I am trying the logic method
+    # my goal is to first randomize if the ship is vertical or horizontal
+    # then use then make sure that the next cell/s should be next to
+    # as determined by the randomizer
 
     # brute force solution - 
     # chooses first randomly then finds a match

@@ -24,9 +24,9 @@ RSpec.describe Game do
 # # Enter p to play. Enter q to quit.
   end
 
-  xit "randomly places the computer ships" do 
+  it "randomly places the computer ships" do 
     game = Game.new
-    game.computer_board.add_cells
+    game.computer_board.add_cellscomG
     comp_cruiser = Ship.new("Cruiser", 3)
     comp_submarine = Ship.new("Submarine", 2) 
 
