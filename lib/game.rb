@@ -24,7 +24,7 @@ class Game
       puts "Invalid input. \n Enter p to play. Enter q to quit."
     end
   end
-
+# ---------------------------------
   # def random_placement(ship)
   #   coordinates = computer_board.cells.keys.sample(2)
   #   if computer_board.valid_placement?(ship, coordinates) == true
@@ -46,6 +46,8 @@ class Game
   # end
 
   # pseudocode: for this method, we were able to pull the cells names out of the @cells hash and put them into an array. We then took a random "sample" of two coordinates and tested if they were a valid placement. If they are a valid pair, we would place them on the board using the "place" method from the board class. If they were not a valid pair, we would call the random placement method again until a valid placement was found. Alternatively, we also tried to use the "until" loop to find a valid pair but got stuck in an infinite loop every time we ran it this way. After finding a valid pair of coordinates and placing them on the board, the method would return the new coordinates so we could use them in the spec file to test this method. We started trying to get this method to run using the submarine (two coordinates) and then if we had gotten it to run correctly, would have updated the method to run for the cruiser (3 coordinates) as well. We could have done this a few ways: a) by using an if/then conditional statement for cruiser vs submarine -or- b) by creating two separate methods (such as "random_placement_sub" and "random_placement_cruiser"). With either approach, for the cruiser method we would have changed "sample(2)" to "sample(3)".
+
+# ---------------------------------
 
   # def choose_location
   #   puts "I have placed my ships. It is time for you to place your ships. First you will choose a location to place your cruiser. Your cruiser may be placed vertically or horizontally in three (3) consecutive spaces. You may not place your ship diagonally. Please select the three (3) coordinates for your cruiser now."
@@ -73,6 +75,47 @@ class Game
   # end
 
   # pseudocode: for this method, the player is given instructions on how to place their ship and is shown an empty board. They are prompted to choose three coordinates for their cruiser. We will run the valid.placement? method to ensure the coordinates chosen are valid. If the coordinates are valid, the user_input_submarine method is called. If the coordinats are not valid the player is prompted to try again. Once the cruiser is succesfully placed, the process is repeated for the player to choose two coordinates for the submarine.
+
+# ---------------------------------
+  def take_turn
+    display_boards
+    player_shot
+    computer_shot
+    shot_results
+  end
+
+# pseudocode: the take_turn method is used to call four helper methods that will happen each turn:
+
+  def display_boards
+    computer_board.render
+    player_board.render(true)
+  end
+
+# pseudocode: 
+
+  def player_shot
+
+  end
+
+# pseudocode: 
+
+  def computer_shot
+
+  end
+
+# pseudocode: 
+
+  def shot_results
+
+  end
+
+  # pseudocode: 
+
+# ---------------------------------
+def valid_turn
+  
+end 
+
 
 end #(final)
 

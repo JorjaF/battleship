@@ -64,13 +64,11 @@ RSpec.describe Game do
     comp_submarine = Ship.new("Submarine", 2) 
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
+    game.random_placement(comp_cruiser)
     game.random_placement(comp_submarine)
     game.choose_location
 
-
-    computer_board = Board.new
-    computer_board.random_placement(comp_cruiser)
-    computer_board.random_placement(comp_submarine)
+    game.take_turn 
 
     expect(game.take_turn("B3")).to be_a String
 
@@ -89,50 +87,33 @@ RSpec.describe Game do
 
   xit "displays the boards" do
     game = Game.new
-
-    player_board = Board.new
-    player_board.add_cells
-    cruiser = Ship.new("Cruiser", 3)
-    submarine = Ship.new("Submarine", 2)
-    player_board.place(cruiser, ["A1", "A2", "A3"])
-    player_board.place(submarine, ["C4", "D4"])
-
-    computer_board = Board.new
-    computer_board.add_cells
+    game.computer_board.add_cells
+    game.player_board.add_cells
     comp_cruiser = Ship.new("Cruiser", 3)
     comp_submarine = Ship.new("Submarine", 2) 
-    computer_board.random_placement(comp_cruiser)
-    computer_board.random_placement(comp_submarine)
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    game.random_placement(comp_cruiser)
+    game.random_placement(comp_submarine)
+    game.choose_location
 
-    computer_board.render
-    player_board.render(true)
-
-    expect(game.display_boards).to eq()
-
-# # Displaying the Boards
-# At the start of the turn, the user is shown both boards. The user should see their ships but not the computer’s ships
-
-# LG note: THIS LIKELY WILL BE A TURN HELPER METHOD
+    expect(game.display_boards).to be_a String
   end
 
   xit "allows the player to take a shot" do 
     game = Game.new
-
-    player_board = Board.new
-    player_board.add_cells
-    cruiser = Ship.new("Cruiser", 3)
-    submarine = Ship.new("Submarine", 2)
-    player_board.place(cruiser, ["A1", "A2", "A3"])
-    player_board.place(submarine, ["C4", "D4"])
-
-    computer_board = Board.new
-    computer_board.add_cells
+    game.computer_board.add_cells
+    game.player_board.add_cells
     comp_cruiser = Ship.new("Cruiser", 3)
     comp_submarine = Ship.new("Submarine", 2) 
-    computer_board.random_placement(comp_cruiser)
-    computer_board.random_placement(comp_submarine)
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    game.random_placement(comp_cruiser)
+    game.random_placement(comp_submarine)
+    game.choose_location
+    
 
-    expect(game.player_shot("B3")).to be_a String
+    expect(game.player_shot(<chosen_coordinate)).to be_a String
     # return value = "Your shot on B3 was a miss/hit."
 
 # # Player Shot
@@ -144,20 +125,18 @@ RSpec.describe Game do
 
   xit "randomly chooses a space for the computer shot" do 
     game = Game.new
-
-    player_board = Board.new
-    player_board.add_cells
-    cruiser = Ship.new("Cruiser", 3)
-    submarine = Ship.new("Submarine", 2)
-    player_board.place(cruiser, ["A1", "A2", "A3"])
-    player_board.place(submarine, ["C4", "D4"])
-
-    computer_board = Board.new
-    computer_board.add_cells
+    game.computer_board.add_cells
+    game.player_board.add_cells
     comp_cruiser = Ship.new("Cruiser", 3)
     comp_submarine = Ship.new("Submarine", 2) 
-    computer_board.random_placement(comp_cruiser)
-    computer_board.random_placement(comp_submarine)
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    game.random_placement(comp_cruiser)
+    game.random_placement(comp_submarine)
+    game.choose_location
+
+
+    
 
     expect(game.computer_shot).to be_a String
     # return value = "My shot on <coordinate> was a hit/miss."
@@ -171,20 +150,17 @@ RSpec.describe Game do
 
   xit "displays the results of the shots" do 
     game = Game.new
-
-    player_board = Board.new
-    player_board.add_cells
-    cruiser = Ship.new("Cruiser", 3)
-    submarine = Ship.new("Submarine", 2)
-    player_board.place(cruiser, ["A1", "A2", "A3"])
-    player_board.place(submarine, ["C4", "D4"])
-
-    computer_board = Board.new
-    computer_board.add_cells
+    game.computer_board.add_cells
+    game.player_board.add_cells
     comp_cruiser = Ship.new("Cruiser", 3)
     comp_submarine = Ship.new("Submarine", 2) 
-    computer_board.random_placement(comp_cruiser)
-    computer_board.random_placement(comp_submarine)
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    game.random_placement(comp_cruiser)
+    game.random_placement(comp_submarine)
+    game.choose_location
+
+    
 
     expect(game.shot_results).to be_a String
 
@@ -203,20 +179,18 @@ RSpec.describe Game do
 
   xit "can determine if coordinates have already been fired upon" do 
     game = Game.new
-
-    player_board = Board.new
-    player_board.add_cells
-    cruiser = Ship.new("Cruiser", 3)
-    submarine = Ship.new("Submarine", 2)
-    player_board.place(cruiser, ["A1", "A2", "A3"])
-    player_board.place(submarine, ["C4", "D4"])
-
-    computer_board = Board.new
-    computer_board.add_cells
+    game.computer_board.add_cells
+    game.player_board.add_cells
     comp_cruiser = Ship.new("Cruiser", 3)
     comp_submarine = Ship.new("Submarine", 2) 
-    computer_board.random_placement(comp_cruiser)
-    computer_board.random_placement(comp_submarine)
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    game.random_placement(comp_cruiser)
+    game.random_placement(comp_submarine)
+    game.choose_location
+
+
+    
 
     expect(game.valid_turn("B3")).to eq(true)
 
@@ -228,20 +202,17 @@ RSpec.describe Game do
 
   xit "can end the game" do 
     game = Game.new
-    
-    player_board = Board.new
-    player_board.add_cells
-    cruiser = Ship.new("Cruiser", 3)
-    submarine = Ship.new("Submarine", 2)
-    player_board.place(cruiser, ["A1", "A2", "A3"])
-    player_board.place(submarine, ["C4", "D4"])
-
-    computer_board = Board.new
-    computer_board.add_cells
+    game.computer_board.add_cells
+    game.player_board.add_cells
     comp_cruiser = Ship.new("Cruiser", 3)
     comp_submarine = Ship.new("Submarine", 2) 
-    computer_board.random_placement(comp_cruiser)
-    computer_board.random_placement(comp_submarine)
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    game.random_placement(comp_cruiser)
+    game.random_placement(comp_submarine)
+    game.choose_location
+    
+
 
 # # End Game
 # The game is over when either the computer or the user sinks all of the enemy ships. When this happens, the user should see a message stating who won:
