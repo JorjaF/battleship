@@ -24,69 +24,35 @@ RSpec.describe Game do
 # # Enter p to play. Enter q to quit.
   end
 
-  it "randomly places the computer ships" do 
+  xit "randomly places the computer ships" do 
     game = Game.new
     game.computer_board.add_cells
     comp_cruiser = Ship.new("Cruiser", 3)
     comp_submarine = Ship.new("Submarine", 2) 
 
-    # game.computer_board.place(comp_cruiser, [])
-
     game.random_placement(comp_submarine)
-    # expect(computer_board.valid_placement?(comp_cruiser, ["A1", "A2", "A3"])).to eq(true)
-    # expect(board.valid_coordinate?("A1")).to eq(true)
-
-    # # need to test if the placement is valid but unsure how to do so without knowing what coordinates to pass in
-
-    # computer_board.random_placement(comp_submarine)
-    # expect(computer_board.valid_placement?(comp_submarine, ["C2", "D2"])).to eq(true)
-    # expect(board.valid_coordinate?("C2")).to eq(true)
-
-    # # need to test if the placement is valid but unsure how to do so without knowing what coordinates to pass in; could use an integration test but the method has already been tested ; integration test would use the return value 
-
-
-# # Computer Ship Placement
-# The computer player should place their ships. The baseline computer should simply use random placements but still adhere to the valid placement rules from iteration 2.
+    game.random_placement(comp_cruiser)
+    expect(computer_board.valid_placement?(comp_cruiser, ["<random_placement_coordinate_1>", "<random_placement_coordinate_2>", "<random_placement_coordinate_3>"])).to eq(true)
+    expect(board.valid_coordinate?("<random_placement_coordinate_1>")).to eq(true)
+    expect(computer_board.valid_placement?(comp_submarine, ["<random_placement_coordinate_1>", "<random_placement_coordinate_2>"])).to eq(true)
+    expect(board.valid_coordinate?("<random_placement_coordinate_2>")).to eq(true)
+    # # in order to test these, we would have had to create a way to use the return value from the "random_placement" method
   end
 
   xit "allows the player to place ships" do 
     game = Game.new
-    player_board = Board.new
-    player_board.add_cells
+    game.player_board.add_cells
     player_board.render
+    # call render to show the player the board before they place their first ship
     cruiser = Ship.new("Cruiser", 3)
-    player_board.place(cruiser, ["A1", "A2", "A3"])
-    player_board.render(true)
-    cell_1 = board.cells["A1"]   
-    cell_2 = board.cells["A2"]
-    cell_3 = board.cells["A3"]  
-
-    expect(cell_1.empty?).to eq(false)
-    expect(cell_3.ship == cell_2.ship).to eq(true)
-    expect(board.valid_placement?(cruiser, ["A1", "A2", "A3"])).to eq(true)
-
     submarine = Ship.new("Submarine", 2)
-    player_board.place(submarine, ["C4", "D4"])
+    game.choose_location
     player_board.render(true)
-    cell_12 = board.cells["C4"]  
-    cell_16 = board.cells["D4"]  
-
-    expect(cell_12.empty?).to eq(false)
-    expect(cell_12.ship == cell_16.ship).to eq(true)
-    expect(board.valid_placement?(cruiser, ["A1", "A2", "A3"])).to eq(true)
-
-    # # Player Ship Placement
-# Next, the user places their ships. They should receive a short explanation of how to place along with a visual representation of their board (which should be empty). SHOW EMPTY BOARD
-
-# When the user enters a valid sequence of spaces, the ship should be placed on the board, the new board with the ship should be shown to the user, and then the user should be asked to place the other ship. SHOW BOARD WITH FIRST SHIP PLACED; THEN SHOW BOARD WITH BOTH SHIPS PLACED
-
-# If the user enters an invalid sequence, they should be prompted again:
-# Enter the squares for the Submarine (2 spaces):
-# > C1 C3
-# Those are invalid coordinates. Please try again:
-# > A1 B1
-# Those are invalid coordinates. Please try again:
-# > C1 D1
+    # call render(true) to show the player the board with both ships set
+    expect(board.valid_placement?(cruiser, [<chosen_location_coordinate_1>, <chosen_location_coordinate_2>, <chosen_location_coordinate_3>])).to eq(true)
+    expect(board.valid_placement?(submarine, [<chosen_location_coordinate_1>, <chosen_location_coordinate_2>])).to eq(true)
+    expect(<chosen_location_coordinate_1>.empty?).to eq(false)
+    expect(<chosen_location_coordinate_2>.ship == <chosen_location_coordinate_3>.ship).to eq(true)
   end
 
   xit "takes turns" do

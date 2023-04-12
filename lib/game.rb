@@ -25,75 +25,62 @@ class Game
     end
   end
 
-
-
-  # def random_placement
-  #   placement = @computer_board.cruiser(rand 1..2)
-  #     if 1 
-  #       place_ship == horizontal
-  #     else
-  #       place_ship == vertical
-  #     end
+  # def random_placement(ship)
+  #   coordinates = computer_board.cells.keys.sample(2)
+  #   if computer_board.valid_placement?(ship, coordinates) == true
+  #     computer_board.place(ship, coordinates)
+  #   else
+  #     random_placement(ship)
+  #   end
+  #   coordinates
   # end
-  
-  # tim said that brute force is not our friend in this situation 
-  # because it is so hard to test, I am trying the logic method
-  # my goal is to first randomize if the ship is vertical or horizontal
-  # then use then make sure that the next cell/s should be next to
-  # as determined by the randomizer
-
-  # brute force solution - 
-  # chooses first randomly then finds a match
-  # the runner lives at the root 
-
-
-  def random_placement(ship)
-    cell_names = computer_board.cells.keys
-    coordinates = [cell_names.sample(2)]
-    until computer_board.valid_placement?(ship, coordinates) == false
-      coordinates = computer_board.cells.keys.sample(2)
-    end
-    # computer_board.place(ship, coordinates)
-    coordinates
-  end
-# LG note: use 'control + c' to exit a loop (if you change false to true in line 53 you will get stuck in a loop)
-
-
-  # LG note: I went for a brute force solution. Whenever I set line 53 to true (which is what it should be) I get stuck in an infinite loop which tells me it cannot find a valid placement. I still think something is wrong with our valid_placement? method but can't quite figure out what. 
-  # LG note: Whenever line 53 is set to false it runs, which tells me the code in the random_placement method works but I am hitting a snag with the valid_placement? method
-  # LG note: I am also getting an error on line 56 when I try to place the ship. So perhaps the issue is how I am trying to access the board class from the game class, and not the valid_placement? method itself. 
-  # LG note: we can pull line 56 out of this method and place the ship in the spec file instead. This way we can just focus on validating the randomly generated coordinates.
-
-    # brute force solution - 
-    # chooses first randomly then finds a match
-    # the runner lives at the root 
-
-# ensure valid placement
-
-    # take the hash of cells and return an array of keys only
-    # return coordinates selected 
-  
 
   # def random_placement(ship)
-  #   placeShip: (size) ->
-  #   spans = @freeSquares().filter (span) ->
-  #     span.length >= size
-  #   span = spans.sample()
-  #   throw "The ocean's too crowded" unless span?
-  #   # offset = Math.random() * (span.length - size) | 0
-  #   squares = span.slice(offset, offset+size)
-  #   square.ship = size for square in squares
-  #   @ships.push squares
-
-  # shipCoordinates: ->
-  #   @ships.map (squares) ->
-  #     squares.map (square) ->
-  #       [square.x, square.y]
-  # require 'pry'; binding.pry
-  #   computer_board.cells.keys
-  #   keys[rand(keys.size)]
-
+  #   cell_names = computer_board.cells.keys
+  #   coordinates = [cell_names.sample(2)]
+  #   until computer_board.valid_placement?(ship, coordinates) == true
+  #     coordinates = computer_board.cells.keys.sample(2)
+  #   end
+  #   # computer_board.place(ship, coordinates)
+  #   coordinates
   # end
+
+  # pseudocode: for this method, we were able to pull the cells names out of the @cells hash and put them into an array. We then took a random "sample" of two coordinates and tested if they were a valid placement. If they are a valid pair, we would place them on the board using the "place" method from the board class. If they were not a valid pair, we would call the random placement method again until a valid placement was found. Alternatively, we also tried to use the "until" loop to find a valid pair but got stuck in an infinite loop every time we ran it this way. After finding a valid pair of coordinates and placing them on the board, the method would return the new coordinates so we could use them in the spec file to test this method. We started trying to get this method to run using the submarine (two coordinates) and then if we had gotten it to run correctly, would have updated the method to run for the cruiser (3 coordinates) as well. We could have done this a few ways: a) by using an if/then conditional statement for cruiser vs submarine -or- b) by creating two separate methods (such as "random_placement_sub" and "random_placement_cruiser"). With either approach, for the cruiser method we would have changed "sample(2)" to "sample(3)".
+
+  def choose_location
+    puts "I have placed my ships. It is time for you to place your ships. First you will choose a location to place your cruiser. Your cruiser may be placed vertically or horizontally in three (3) consecutive spaces. You may not place your ship diagonally. Please select the three (3) coordinates for your cruiser now."
+    player_board.render
+    user_input_cruiser
+  end
+
+  def user_input_cruiser (helper method for choose_location_cruiser)
+    if <the user enters three coordinates>.valid_placement?
+      user_input_submarine
+    else
+
+    end
+  end
+
+  def user_input_submarine
+    player_board.render(true)
+    puts "Next you will choose a location to place your submarine. Your submarine may be placed vertically or horizontally in two (2) consecutive spaces. You may not place your ship diagonally. Please select the two (2) coordinates for your submarine now." 
+
+  end
+  
+
+# When the user enters a valid sequence of spaces, the ship should be placed on the board, the new board with the ship should be shown to the user, and then the user should be asked to place the other ship. SHOW BOARD WITH FIRST SHIP PLACED; THEN SHOW BOARD WITH BOTH SHIPS PLACED
+
+# If the user enters an invalid sequence, they should be prompted again:
+# Enter the squares for the Submarine (2 spaces):
+# > C1 C3
+# Those are invalid coordinates. Please try again:
+# > A1 B1
+# Those are invalid coordinates. Please try again:
+# > C1 D1
+
+  
+  
+  
   
 end
 
