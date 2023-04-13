@@ -153,18 +153,6 @@ RSpec.describe Game do
     game.random_placement(comp_submarine)
     game.choose_location
     
-
-
-# # End Game
-# The game is over when either the computer or the user sinks all of the enemy ships. When this happens, the user should see a message stating who won:
-
-# You won!
-# or
-
-# I won!
-
-# Then, they should be returned to the Main Menu asking them if they would like to play or quit. (DISPLAY MAIN MENU)
+    expect(game.end_game?).to eq(false)
   end
-
-
 end

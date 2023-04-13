@@ -85,7 +85,7 @@ class Game
   #   end_game?
   # end
 
-# pseudocode: the take_turn method is used to call five helper methods that will happen each turn:
+# pseudocode: the take_turn method is used to call six helper methods that will happen each turn:
 
   # def display_boards
   #   computer_board.render
@@ -147,42 +147,18 @@ class Game
 
   # pseudocode: the computer_shot method calls the shot_results_computer method and passes in the valid coordinate randomly chosen by the computer. If the coordinate is empty the user will receive a message letting them know the computer's shot was a miss. If the coordinate contains a ship and the ship's health is now equal to 0, the user will be told their ship was hit and the ship is now sunk. If the coordinate contains a ship, the user will be told the computer's shot was a hit. Return value will be the valid coordinate randomly selected.
 
-# ---------------------------------
-def end_game?
+  # def end_game?
+  #   if comp_cruiser.sunk? && comp_submarine.sunk?
+  #     puts "You have sunk all of my ships. You won!"
+  #     game.main_menu
+  #   elsif cruiser.sunk? && submarine.sunk?
+  #     puts "I have sunk all of your ships. I won!"
+  #     game.main_menu
+  #   else
+  #     game.take_turn
+  #   end
+  # end 
+
+# pseudocode: the end_game? method is called at the end of each turn to determine if the game should end or not. If both of the computer's ships have been sunk, the game will be over and the player will receive a message telling them they have won. If both of the player's ships have been sunk, the game will be over and they will receive a message telling them that the computer has won. If neither the computer's nor the player's ships have all been sunk, the game will continue.
 
 end 
-
-
-end #(final)
-
-# gets.chomp for user input
-
-
-# # Functionality Checklist
-# This checklist summarizes all of the functionality you are expected to build. This will be used to assess the completion of your project:
-
-# Main Menu:
-
-# User is shown the main menu where they can play or quit
-# Setup:
-
-# Computer can place ships randomly in valid locations
-# User can enter valid sequences to place both ships
-# Entering invalid ship placements prompts user to enter valid placements
-# Turn:
-
-# User board is displayed showing hits, misses, sunken ships, and ships
-# Computer board is displayed showing hits, misses, and sunken ships
-# Computer chooses a random shot
-# Computer does not fire on the same spot twice
-# User can choose a valid coordinate to fire on
-# Entering invalid coordinate prompts user to enter valid coordinate
-# Both computer and player shots are reported as a hit, sink, or miss
-# User is informed when they have already fired on a coordinate
-# Board is updated after a turn
-# End Game:
-
-# Game ends when all the user’s ships are sunk
-# Game ends when all the computer’s ships are sunk
-# Game reports who won
-# Game returns user back to the Main Menu
