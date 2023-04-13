@@ -76,7 +76,7 @@ class Board
       column << coordinates[0].chars.first.next
       column.last == coordinates.last.chars.first
     elsif coordinates.length == 3
-      column = []
+      c                     2olumn = []
       column << coordinates[0].chars.first
       column << coordinates[0].chars.first.next
       column << coordinates[0].chars.first.next.next

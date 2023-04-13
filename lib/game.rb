@@ -17,7 +17,7 @@ class Game
     if user_input == "p"
       puts "Game on, let's go!"
     elsif user_input == "q"
-      puts "Chicken!"
+      puts "Chicken,bwak, bwak, bwak!"
     else 
       puts "Invalid input. \n Enter p to play. Enter q to quit."
     end
