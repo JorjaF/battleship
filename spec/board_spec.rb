@@ -84,7 +84,7 @@ RSpec.describe Board do
     cell_1 = board.cells["A1"]   
     cell_2 = board.cells["A2"]
     cell_3 = board.cells["A3"]   
- 
+
     expect(cell_1.ship).to be_a(Ship)
     expect(cell_2.ship).to be_a(Ship)
     expect(cell_3.ship).to be_a(Ship)
@@ -113,5 +113,6 @@ RSpec.describe Board do
     expect(board.render).to eq("  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n")
     expect(board.render(true)).to eq("  1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . \n")
   end
-end
+  # if we had more time, we would have updated the render method to be more responsive to the game
   # As you move forward, you will need to add functionality to your game so that you can fire on Cells and damage their Ships. When you do this, you should also add new tests for your render method that it can render with Hits, Misses, and Sunken Ships. See Iteration 2 requirements for examples of what it could look like
+end

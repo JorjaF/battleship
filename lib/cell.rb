@@ -10,15 +10,11 @@ class Cell
   end
 
   def empty?
-    if @ship == nil
-      true
-    else
-      false
-    end
+    @ship == nil
   end
 
-  def place_ship(ship_name)
-    @ship = ship_name
+  def place_ship(ship)
+    @ship = ship
   end
 
   def fired_upon?
@@ -45,7 +41,4 @@ class Cell
       end
     end
   end
-
-
-
 end

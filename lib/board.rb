@@ -4,7 +4,7 @@ class Board
   def initialize
     @cells = {}
   end
-
+# can add the cells to the initializer
   def add_cells
     @cells = {
       "A1" => Cell.new("A1"),
@@ -27,30 +27,20 @@ class Board
   end
 
   def valid_coordinate?(coordinate)
-    if @cells.include?(coordinate)
-      true
-    else 
-      false
-    end
+    @cells.include?(coordinate)
   end
 
   def valid_placement?(ship, coordinates)
-    array_length(ship, coordinates) && consecutive_coordinates(ship, coordinates) && not_overlapping?(ship, coordinates) 
+    array_length(ship, coordinates) && 
+    consecutive_coordinates(ship, coordinates) && 
+    not_overlapping?(ship, coordinates) 
   end
 
   def array_length(ship, coordinates)
     if ship.name == "Cruiser"
-      if coordinates.length == 3
-        true
-      else
-        false
-      end
+      coordinates.length == 3
     elsif ship.name == "Submarine"
-      if coordinates.length == 2
-        true
-      else
-        false
-      end
+      coordinates.length == 2
     end
   end
 
@@ -70,20 +60,12 @@ class Board
       row << coordinates[0].chars.last.to_i
       row << coordinates[0].chars.last.to_i.next
       row << coordinates[0].chars.last.to_i.next.next
-      if row.last == coordinates.last.chars.last.to_i
-        true
-      else 
-        false
-      end
+      row.last == coordinates.last.chars.last.to_i
     elsif coordinates.length == 2 
       row = []
       row << coordinates[0].chars.last.to_i
       row << coordinates[0].chars.last.to_i.next
-      if row.last == coordinates.last.chars.last.to_i
-        true
-      else 
-        false
-      end
+      row.last == coordinates.last.chars.last.to_i
     end
   end
 
@@ -92,21 +74,13 @@ class Board
       column = []
       column << coordinates[0].chars.first
       column << coordinates[0].chars.first.next
-      if column.last == coordinates.last.chars.first
-        true
-      else 
-        false
-      end
+      column.last == coordinates.last.chars.first
     elsif coordinates.length == 3
       column = []
       column << coordinates[0].chars.first
       column << coordinates[0].chars.first.next
       column << coordinates[0].chars.first.next.next
-      if column.last == coordinates.last.chars.first
-        true
-      else 
-        false
-      end
+      column.last == coordinates.last.chars.first
     end
   end
 
@@ -115,7 +89,7 @@ class Board
       @cells[coordinate].nil?
     end
   end
-    
+
   def place(ship, coordinates)
     coordinates.each do |coordinate|
       @cells[coordinate].place_ship(ship)
