@@ -2,24 +2,7 @@ class Board
   attr_reader :cells
             
   def initialize
-    @cells = {
-      # "A1" => Cell.new("A1"),
-      # "A2" => Cell.new("A2"),
-      # "A3" => Cell.new("A3"),
-      # "A4" => Cell.new("A4"),
-      # "B1" => Cell.new("B1"),
-      # "B2" => Cell.new("B2"),
-      # "B3" => Cell.new("B3"),
-      # "B4" => Cell.new("B4"),
-      # "C1" => Cell.new("C1"),
-      # "C2" => Cell.new("C2"),
-      # "C3" => Cell.new("C3"),
-      # "C4" => Cell.new("C4"),   
-      # "D1" => Cell.new("D1"),
-      # "D2" => Cell.new("D2"),
-      # "D3" => Cell.new("D3"),
-      # "D4" => Cell.new("D4")
-    }
+    @cells = {}
   end
 # can add the cells to the initializer
   def add_cells
@@ -55,17 +38,9 @@ class Board
 
   def array_length(ship, coordinates)
     if ship.name == "Cruiser"
-      if coordinates.length == 3
-        true
-      else
-        false
-      end
+      coordinates.length == 3
     elsif ship.name == "Submarine"
-      if coordinates.length == 2
-        true
-      else
-        false
-      end
+      coordinates.length == 2
     end
   end
 
@@ -85,20 +60,12 @@ class Board
       row << coordinates[0].chars.last.to_i
       row << coordinates[0].chars.last.to_i.next
       row << coordinates[0].chars.last.to_i.next.next
-      if row.last == coordinates.last.chars.last.to_i
-        true
-      else 
-        false
-      end
+      row.last == coordinates.last.chars.last.to_i
     elsif coordinates.length == 2 
       row = []
       row << coordinates[0].chars.last.to_i
       row << coordinates[0].chars.last.to_i.next
-      if row.last == coordinates.last.chars.last.to_i
-        true
-      else 
-        false
-      end
+      row.last == coordinates.last.chars.last.to_i
     end
   end
 
@@ -107,21 +74,13 @@ class Board
       column = []
       column << coordinates[0].chars.first
       column << coordinates[0].chars.first.next
-      if column.last == coordinates.last.chars.first
-        true
-      else 
-        false
-      end
+      column.last == coordinates.last.chars.first
     elsif coordinates.length == 3
       column = []
       column << coordinates[0].chars.first
       column << coordinates[0].chars.first.next
       column << coordinates[0].chars.first.next.next
-      if column.last == coordinates.last.chars.first
-        true
-      else 
-        false
-      end
+      column.last == coordinates.last.chars.first
     end
   end
 

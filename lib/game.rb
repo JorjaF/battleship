@@ -40,7 +40,7 @@ class Game
   #   until computer_board.valid_placement?(ship, coordinates) == true
   #     coordinates = computer_board.cells.keys.sample(2)
   #   end
-  #   # computer_board.place(ship, coordinates)
+  #   computer_board.place(ship, coordinates)
   #   coordinates
   # end
 
@@ -160,5 +160,4 @@ class Game
   # end 
 
 # pseudocode: the end_game? method is called at the end of each turn to determine if the game should end or not. If both of the computer's ships have been sunk, the game will be over and the player will receive a message telling them they have won. If both of the player's ships have been sunk, the game will be over and they will receive a message telling them that the computer has won. If neither the computer's nor the player's ships have all been sunk, the game will continue.
-
 end 

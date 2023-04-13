@@ -11,7 +11,7 @@ RSpec.describe Game do
     expect(game).to be_a(Game)
   end
 
-  xit "has a main menu" do
+  it "has a main menu" do
     game = Game.new
     
     expect(game.main_menu("p")).to eq("Thank you for playing!")
@@ -27,10 +27,10 @@ RSpec.describe Game do
 
     game.random_placement(comp_submarine)
     game.random_placement(comp_cruiser)
-    expect(computer_board.valid_placement?(comp_cruiser, ["<random_placement_coordinate_1>", "<random_placement_coordinate_2>", "<random_placement_coordinate_3>"])).to eq(true)
-    expect(board.valid_coordinate?("<random_placement_coordinate_1>")).to eq(true)
-    expect(computer_board.valid_placement?(comp_submarine, ["<random_placement_coordinate_1>", "<random_placement_coordinate_2>"])).to eq(true)
-    expect(board.valid_coordinate?("<random_placement_coordinate_2>")).to eq(true)
+    expect(computer_board.valid_placement?(comp_cruiser, ["(random_placement_coordinate_1)", "(random_placement_coordinate_2)", "(random_placement_coordinate_3)"])).to eq(true)
+    expect(board.valid_coordinate?("(random_placement_coordinate_1)")).to eq(true)
+    expect(computer_board.valid_placement?(comp_submarine, ["(random_placement_coordinate_1)", "(random_placement_coordinate_2)"])).to eq(true)
+    expect(board.valid_coordinate?("(random_placement_coordinate_2)")).to eq(true)
     # # in order to test these, we would have had to create a way to use the return value from the "random_placement" method
   end
 
@@ -42,11 +42,11 @@ RSpec.describe Game do
     game.choose_location
     game.player_board.render(true)
     # call render(true) to show the player the board with both ships set
-    expect(board.valid_placement?(cruiser, [<chosen_location_coordinate_1>, <chosen_location_coordinate_2>, <chosen_location_coordinate_3>])).to eq(true)
-    expect(board.valid_placement?(submarine, [<chosen_location_coordinate_4>, <chosen_location_coordinate_5>])).to eq(true)
-    expect(<chosen_location_coordinate_1>.empty?).to eq(false)
-    expect(<chosen_location_coordinate_2>.ship == <chosen_location_coordinate_3>.ship).to eq(true)
-    expect(board.not_overlapping?(submarine, [<chosen_location_coordinate_4>, <chosen_location_coordinate_5>])).to eq(true)
+    expect(board.valid_placement?(cruiser, [(chosen_location_coordinate_1), (chosen_location_coordinate_2), (chosen_location_coordinate_3)])).to eq(true)
+    expect(board.valid_placement?(submarine, [(chosen_location_coordinate_4), (chosen_location_coordinate_5)])).to eq(true)
+    expect((chosen_location_coordinate_1).empty?).to eq(false)
+    expect((chosen_location_coordinate_2).ship == (chosen_location_coordinate_3).ship).to eq(true)
+    expect(board.not_overlapping?(submarine, [(chosen_location_coordinate_4), (chosen_location_coordinate_5)])).to eq(true)
   end
 
   xit "takes turns" do
