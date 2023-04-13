@@ -35,7 +35,7 @@ class Game
 
   # def random_placement(ship)
   #   coordinates = computer_board.cells.keys.sample(2)
-  #   until computer_board.valid_placement?(ship, coordinates) == true
+  #   until computer_board.valid_placement?(ship, coordinates) == false
   #     coordinates = computer_board.cells.keys.sample(2)
   #   end
   #   computer_board.place(ship, coordinates)

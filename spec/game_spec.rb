@@ -63,7 +63,7 @@ RSpec.describe Game do
 
     game.take_turn 
     expect(game.take_turn).to be_a String
- end
+  end
 
   xit "displays the boards" do
     game = Game.new
