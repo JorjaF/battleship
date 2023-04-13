@@ -5,7 +5,7 @@ require './lib/board'
 require './lib/game'
 
 RSpec.describe Game do
-  # before each do here: instantiate a new game and add cells to the player and computer boards; if there was time to refactor we would also consider adding the ships to the Game class initializer or include them here
+  # if there was time to refactor, we would add a before each do statement here: instantiate a new game and add cells to the player and computer boards; we would also consider adding the ships to the Game class initializer or include them here
   it "exists" do
     game = Game.new
     expect(game).to be_a(Game)

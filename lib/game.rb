@@ -5,8 +5,6 @@ class Game
   def initialize
     @computer_board = Board.new
     @player_board = Board.new
-    # @computer_ships = []
-    # @player_ships = []
   end
 
   def main_menu(user_input)
