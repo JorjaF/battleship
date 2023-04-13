@@ -36,8 +36,7 @@ class Game
   # end
 
   # def random_placement(ship)
-  #   cell_names = computer_board.cells.keys
-  #   coordinates = [cell_names.sample(2)]
+  #   coordinates = computer_board.cells.keys.sample(2)
   #   until computer_board.valid_placement?(ship, coordinates) == true
   #     coordinates = computer_board.cells.keys.sample(2)
   #   end
@@ -77,43 +76,80 @@ class Game
   # pseudocode: for this method, the player is given instructions on how to place their ship and is shown an empty board. They are prompted to choose three coordinates for their cruiser. We will run the valid.placement? method to ensure the coordinates chosen are valid. If the coordinates are valid, the user_input_submarine method is called. If the coordinats are not valid the player is prompted to try again. Once the cruiser is succesfully placed, the process is repeated for the player to choose two coordinates for the submarine.
 
 # ---------------------------------
-  def take_turn
-    display_boards
-    player_shot
-    computer_shot
-    shot_results
-  end
+  # def take_turn
+  #   display_boards
+  #   player_shot
+  #   computer_shot
+  #   shot_result_player
+  #   shot_result_computer
+  #   end_game?
+  # end
 
-# pseudocode: the take_turn method is used to call four helper methods that will happen each turn:
+# pseudocode: the take_turn method is used to call five helper methods that will happen each turn:
 
-  def display_boards
-    computer_board.render
-    player_board.render(true)
-  end
+  # def display_boards
+  #   computer_board.render
+  #   player_board.render(true)
+  # end
 
-# pseudocode: 
+# pseudocode: when the take_turn method calls the display_boards method, it will show the computer board (without any ships displayed) and the player's board (with the ships displayed)
 
-  def player_shot
+  # def player_shot
+  #   puts "Take your best shot! Enter a coordinate to take a shot at my ships."
+  #   user_input = coordinate
+  #   if valid_turn?(user_input)
+  #     shot_results_player(user_input)
+  #   end
+  # end
 
-  end
+  # def valid_turn?(user_input)
+  #   if user_input.valid_coordinate? == false || cell.render != (".")
+  #     puts "That is an invalid coordinate. Please try again."
+  #     player_shot
+  #   end
+  # end
 
-# pseudocode: 
+  # pseudocode: when the take_turn method calls the player_shot method, the player will be prompted to enter a coordinate. If the coordinate is not a valid coordinate or if it has already been called, the player will be prompted to provide a new coordinate. If the turn is valid, the shot_results_player method will be called. 
+  
+  # def shot_results_player(user_input)
+  #   if user_input.empty? 
+  #     puts "Your shot on #{user_input} was a miss."
+  #   elsif user_input.empty? == false && user_input.ship.sunk? 
+  #     puts "Your shot on #{user_input} was a hit and you have sunk my ship."
+  #   else
+  #     puts "Your shot on #{user_input} was a hit."
+  #   end
+  #   user input
+  # end
+  
+  # pseudocode: the player_shot method calls the shot_results_player method and passes in the valid coordinate called by the player. If the coordinate is empty the user will receive a message letting them know their shot was a miss If the coordinate contains a ship and the ship's health is now 0, they will be told their shot was a hit and they have sunk a ship. If the coordinate contains a ship, they will be told their shot was a hit. Return value will the the coordinate the player chooses.
 
-  def computer_shot
+  # def computer_shot
+  #   random_coordinate = computer_board.cells.keys.sample
+  #   if cell.render != (".")
+  #     computer_shot
+  #   end
+  #   shot_results_computer(random_coordinate)
+  # end
 
-  end
+# pseudocode: when the player_shot method calls the computer_shot method, the computer will randomly select one coordinate. If that cell has already been called, it will choose another coordinate. If the coordinate has not been called yet, the shot_results_computer method will be called.
 
-# pseudocode: 
+  # def shot_results_computer(random_coordinate)
+  #   if random_coordinate.empty? 
+  #     puts "My shot on #{random_coordinate} was a miss."
+  #   elsif random_coordinate.empty? == false && random_coordinate.ship.sunk? 
+  #     puts "My shot on #{random_coordinate} was a hit and I have sunk your ship."
+  #   else
+  #     puts "My shot on #{random_coordinate} was a hit."
+  #   end
+  #   random_coordinate
+  # end
 
-  def shot_results
-
-  end
-
-  # pseudocode: 
+  # pseudocode: the computer_shot method calls the shot_results_computer method and passes in the valid coordinate randomly chosen by the computer. If the coordinate is empty the user will receive a message letting them know the computer's shot was a miss. If the coordinate contains a ship and the ship's health is now equal to 0, the user will be told their ship was hit and the ship is now sunk. If the coordinate contains a ship, the user will be told the computer's shot was a hit. Return value will be the valid coordinate randomly selected.
 
 # ---------------------------------
-def valid_turn
-  
+def end_game?
+
 end 
 
 

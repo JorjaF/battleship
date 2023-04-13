@@ -17,11 +17,6 @@ RSpec.describe Game do
     expect(game.main_menu("p")).to eq("Thank you for playing!")
     expect(game.main_menu("q")).to eq("Thank you for playing!")
     expect(game.main_menu("a")).to eq("Thank you for playing!")
-    # the messages the player receives are different for each input
-
-    # # When the user starts the game, they should see a welcome message that asks them if they want to play or quit. Whenever a game ends, they should return to this message so they can start a new game, or quit.
-# # Welcome to BATTLESHIP
-# # Enter p to play. Enter q to quit.
   end
 
   xit "randomly places the computer ships" do 
@@ -42,12 +37,10 @@ RSpec.describe Game do
   xit "allows the player to place ships" do 
     game = Game.new
     game.player_board.add_cells
-    player_board.render
-    # call render to show the player the board before they place their first ship
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
     game.choose_location
-    player_board.render(true)
+    game.player_board.render(true)
     # call render(true) to show the player the board with both ships set
     expect(board.valid_placement?(cruiser, [<chosen_location_coordinate_1>, <chosen_location_coordinate_2>, <chosen_location_coordinate_3>])).to eq(true)
     expect(board.valid_placement?(submarine, [<chosen_location_coordinate_4>, <chosen_location_coordinate_5>])).to eq(true)
@@ -69,21 +62,8 @@ RSpec.describe Game do
     game.choose_location
 
     game.take_turn 
-
-    expect(game.take_turn("B3")).to be_a String
-
-# # The Turn
-
-# During the main game, players take turns firing at one another by selecting positions on the grid to attack.
-
-# A single turn consists of:
-
-# Displaying the boards
-# Player choosing a coordinate to fire on
-# Computer choosing a coordinate to fire on
-# Reporting the result of the Player’s shot
-# Reporting the result of the Computer’s shot
-  end
+    expect(game.take_turn).to be_a String
+ end
 
   xit "displays the boards" do
     game = Game.new
@@ -112,15 +92,7 @@ RSpec.describe Game do
     game.random_placement(comp_submarine)
     game.choose_location
     
-
-    expect(game.player_shot(<chosen_coordinate)).to be_a String
-    # return value = "Your shot on B3 was a miss/hit."
-
-# # Player Shot
-# The player should be asked for a coordinate to fire on. If they enter an invalid coordinate, they should be prompted until they enter a valid one
-
-# LG note: THIS LIKELY WILL BE A TURN HELPER METHOD
-
+    expect(game.player_shot).to be_a String
   end
 
   xit "randomly chooses a space for the computer shot" do 
@@ -135,17 +107,7 @@ RSpec.describe Game do
     game.random_placement(comp_submarine)
     game.choose_location
 
-
-    
-
     expect(game.computer_shot).to be_a String
-    # return value = "My shot on <coordinate> was a hit/miss."
-
-    # # Computer Shot
-# The computer should choose a random space on the board. The computer should not fire on a space that has already been fired on.
-
-# LG note: THIS LIKELY WILL BE A TURN HELPER METHOD
-
   end
 
   xit "displays the results of the shots" do 
@@ -160,21 +122,8 @@ RSpec.describe Game do
     game.random_placement(comp_submarine)
     game.choose_location
 
-    
-
-    expect(game.shot_results).to be_a String
-
-# # Results
-# The results of the shots should be displayed
-
-# The game needs to handle all of the following results:
-
-# A shot missed
-# A shot hit a ship
-# A shot sunk a ship
-
-# LG note: THIS LIKELY WILL BE A TURN HELPER METHOD
-# LG note: UPDATE BOARD.RENDER METHOD
+    expect(game.shot_results_player("A1")).to be_a String
+    expect(game.shot_results_computer("B2")).to be_a String
   end
 
   xit "can determine if coordinates have already been fired upon" do 
@@ -189,15 +138,7 @@ RSpec.describe Game do
     game.random_placement(comp_submarine)
     game.choose_location
 
-
-    
-
-    expect(game.valid_turn("B3")).to eq(true)
-
-# # Coordinates that have already been fired upon
-# It is possible that the user enters a coordinate they have already fired upon. You need to add something that informs the user that this is the case. You may choose to either prompt them again for a coordinate they haven’t fired on, or let them choose it again and inform them in the results phase that they selected this coordinate again.
-
-# LG note: THIS LIKELY WILL BE A PLAYER SHOT HELPER METHOD
+    expect(game.valid_turn?("A1")).to eq(true)
   end
 
   xit "can end the game" do 
