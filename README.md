@@ -24,10 +24,13 @@ If you had one more day to work on this project, what would you work on?
 
 Describe the pairing techniques you used while working on this project.
 
- - We started by going over our DTR in detail. We discussed working styles and conflicting schedules so that we could both get as much out of the time we had. We also discussed some of out Ruby formatting and things like that. We also did a DTR pulse check about half way through the progect to make sure that we were still in sync. When working together we used the driver/navigtor method and each took turns driving, when we had times to work together. Since we had some conflics in our schdules we used the ping pong method, where one of us would write tests and the other would code. 
+ - We started by going over our DTR in detail. We discussed working styles and conflicting schedules so that we could both get as much out of the time we had. We also discussed some of out Ruby formatting and things like that. We also did a DTR pulse check about half way through the project to make sure that we were still in sync. When working together we used the driver/navigtor method and each took turns driving, when we had times to work together. Since we had some conflicts in our schdules we used the ping pong method, where one of us would write tests and the other would code. 
 
 
 Describe how feedback was shared over the course of this project.
  - Partners remained open to giving and receiving feedback. Partners felt comfortable sharing thoughts and questions openly and checked in with each other. 
 
- from Jorja: as an extra shout out I have to say that LG is amazing at giving feedback. She is always kind and is willing to help her partners understand anything that she can. She is a great cheerleader and motivator as well. 
+ - from Jorja: as an extra shout out I have to say that LG is amazing at giving feedback. She is always kind and is willing to help her partners understand anything that she can. She is a great cheerleader and motivator as well. 
+
+  - LG: I agree that this was a good pairing and really enjoyed getting to work with Jorja. Jorja was a wonderful supporter, always open for trying new things, and (most importantly) made me laugh. I also appreciate how she was able to use self-reflection to help her navaigate her own professional development. Overall, the thing I am most proud of is how well we were able to work together. 
+  
