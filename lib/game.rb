@@ -33,14 +33,15 @@ class Game
   #   coordinates
   # end
 
-  # def random_placement(ship)
-  #   coordinates = computer_board.cells.keys.sample(2)
-  #   until computer_board.valid_placement?(ship, coordinates) == false
-  #     coordinates = computer_board.cells.keys.sample(2)
-  #   end
-  #   computer_board.place(ship, coordinates)
-  #   coordinates
-  # end
+  def random_placement(ship)
+    coordinates = computer_board.cells.keys.sample(2)
+    until computer_board.valid_placement?(ship, coordinates)
+        
+      coordinates = computer_board.cells.keys.sample(2)
+    end
+    computer_board.place(ship, coordinates)
+    coordinates
+  end
 
   # pseudocode: for this method, we were able to pull the cells names out of the @cells hash and put them into an array. We then took a random "sample" of two coordinates and tested if they were a valid placement. If they are a valid pair, we would place them on the board using the "place" method from the board class. If they were not a valid pair, we would call the random placement method again until a valid placement was found. Alternatively, we also tried to use the "until" loop to find a valid pair but got stuck in an infinite loop every time we ran it this way. After finding a valid pair of coordinates and placing them on the board, the method would return the new coordinates so we could use them in the spec file to test this method. We started trying to get this method to run using the submarine (two coordinates) and then if we had gotten it to run correctly, would have updated the method to run for the cruiser (3 coordinates) as well. We could have done this a few ways: a) by using an if/then conditional statement for cruiser vs submarine -or- b) by creating two separate methods (such as "random_placement_sub" and "random_placement_cruiser"). With either approach, for the cruiser method we would have changed "sample(2)" to "sample(3)".
 

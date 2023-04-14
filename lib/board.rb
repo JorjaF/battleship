@@ -31,6 +31,7 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
+
     array_length(ship, coordinates) && 
     consecutive_coordinates(ship, coordinates) && 
     not_overlapping?(ship, coordinates) 
@@ -40,7 +41,7 @@ class Board
     if ship.name == "Cruiser"
       coordinates.length == 3
     elsif ship.name == "Submarine"
-      coordinates.length == 2
+     coordinates.length == 2
     end
   end
 
@@ -86,7 +87,7 @@ class Board
 
   def not_overlapping?(ship, coordinates)
     coordinates.all? do |coordinate|
-      @cells[coordinate].nil?
+     @cells[coordinate].ship.nil?
     end
   end
 
